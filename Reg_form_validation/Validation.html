@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lab_Task_1</title>
+  <link rel="stylesheet" href="AQI.css" />
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+
+  <div style="display: flex; justify-content: center; align-items: center; height: 15vh;">
+    <img src="logo.jpg" alt="image" style="border-radius: 50%; width: 100px; height: 100px;" />
+  </div>
+
+  <div style="display: flex; justify-content: center; align-items: center; height: 5vh; margin-top: -20px;">
+    <h2>TITLE</h2>
+  </div>
+
+  <div style="width: 1000px; height: 1500px; display: flex; border: 2px solid black;">
+    <!-- Left Side -->
+    <div style="flex: 1; display: flex; justify-content: center; align-items: center; border-right: 2px solid black; background: hwb(175 41% 15%);">
+      <form id="registrationForm" action="process.php" method="POST" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 30px;">
+        <h4>Registration</h4>
+
+        <label for="fullname" style="align-self: flex-start; margin-left: 10px;">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" style="width: 90%; padding: 5px;" required />
+        <small id="nameError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <label for="email" style="align-self: flex-start; margin-left: 10px;">Email:</label>
+        <input type="email" id="email" name="email" style="width: 90%; padding: 5px;" required />
+        <small id="emailError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <label for="password" style="align-self: flex-start; margin-left: 10px;">Password:</label>
+        <input type="password" id="password" name="password" style="width: 90%; padding: 5px;" required />
+        <small id="passwordError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <label for="confirm-password" style="align-self: flex-start; margin-left: 10px;">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" style="width: 90%; padding: 5px;" required />
+
+        <label for="dob" style="align-self: flex-start; margin-left: 10px;">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" style="width: 90%; padding: 5px;" required />
+        <small id="dobError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <label for="country" style="align-self: flex-start; margin-left: 10px;">Country:</label>
+        <select id="country" name="country" style="width: 94%; padding: 5px;" required>
+          <option value="">Select Country</option>
+          <option value="bangladesh">Bangladesh</option>
+          <option value="russia">Russia</option>
+          <option value="china">China</option>
+          <option value="pakistan">Pakistan</option>
+          <option value="korea">Korea</option>
+          <option value="other">Other</option>
+        </select>
+        <small id="countryError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <label style="align-self: flex-start; margin-left: 10px;">Gender:</label>
+        <div style="display: flex; width: 90%;">
+          <input type="radio" id="male" name="gender" value="male" />
+          <label for="male" style="margin-right: 10px;">Male</label>
+          <input type="radio" id="female" name="gender" value="female" />
+          <label for="female">Female</label>
+        </div>
+        <small id="genderError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <label for="color" style="align-self: flex-start; margin-left: 10px;">Choose Color:</label>
+        <input type="color" id="color" name="color" style="width: 94%;" required />
+
+        <label for="description" style="align-self: flex-start; margin-left: 10px;">Description:</label>
+        <textarea id="description" name="description" rows="4" style="width: 94%; padding: 5px;"></textarea>
+
+        <div style="align-self: flex-start; margin-left: 10px;">
+          <input type="checkbox" id="terms" name="terms" required />
+          I agree to the <a href="https://example.com/terms" target="_blank" style="color: blue;">terms and conditions</a>
+        </div>
+        <small id="termsError" style="color: red; align-self: flex-start; margin-left: 10px;"></small>
+
+        <button type="submit" style="padding: 5px 10px;">Submit</button>
+      </form>
+    </div>
+
+    <!-- Right Side -->
+    <div style="flex: 1; display: flex; flex-direction: column; background-color: rgb(117, 115, 113);">
+      <div style="flex: 2; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid black; background-color: rgb(118, 105, 116);">
+        <form id="loginForm" style="display: flex; flex-direction: column; align-items: center; width: 80%;">
+          <h4>Login</h4>
+          <label for="loginEmail" style="align-self: flex-start; margin-left: 5px; color: white;">Email:</label>
+          <input type="email" id="loginEmail" name="loginEmail" style="width: 100%; padding: 5px;" required />
+
+          <label for="loginPassword" style="align-self: flex-start; margin-left: 5px; color: white;">Password:</label>
+          <input type="password" id="loginPassword" name="loginPassword" style="width: 100%; padding: 5px;" required />
+
+          <button type="submit" style="padding: 5px 10px;">Login</button>
+        </form>
+      </div>
+
+      <p id="loginMessage" style="text-align: center; color: red; margin: 10px 0;"></p>
+
+      <div id="aqiContainer" style="flex: 5; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; background-color: #eee;">
+        <p id="loginNotice" style="color: red; font-weight: bold; text-align: center;">Please login to see Information</p>
+        <table id="aqiTable">
+          <thead><tr><th>City</th><th>AQI</th></tr></thead>
+          <tbody>
+            <tr><td>Dhaka</td><td class="aqiValue">---</td></tr>
+            <tr><td>Delhi</td><td class="aqiValue">---</td></tr>
+            <tr><td>Karachi</td><td class="aqiValue">---</td></tr>
+            <tr><td>Lahore</td><td class="aqiValue">---</td></tr>
+            <tr><td>Kolkata</td><td class="aqiValue">---</td></tr>
+            <tr><td>Chittagong</td><td class="aqiValue">---</td></tr>
+            <tr><td>Mumbai</td><td class="aqiValue">---</td></tr>
+            <tr><td>Islamabad</td><td class="aqiValue">---</td></tr>
+            <tr><td>Chennai</td><td class="aqiValue">---</td></tr>
+            <tr><td>Hyderabad</td><td class="aqiValue">---</td></tr>
+            <tr><td>Bangkok</td><td class="aqiValue">---</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Registration validation
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+      let valid = true;
+      const name = document.getElementById("fullname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirm-password").value.trim();
+      const dob = document.getElementById("dob").value;
+      const country = document.getElementById("country").value;
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const terms = document.getElementById("terms").checked;
+
+      document.getElementById("nameError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("passwordError").textContent = "";
+      document.getElementById("dobError").textContent = "";
+      document.getElementById("countryError").textContent = "";
+      document.getElementById("genderError").textContent = "";
+      document.getElementById("termsError").textContent = "";
+
+      const nameRegex = /^[A-Z][a-zA-Z ]*$/;
+      const emailRegex = /^[0-9]{2}-[0-9]{5}-[1-3]@student\.aiub\.edu$/;
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+      if (!nameRegex.test(name)) {
+        document.getElementById("nameError").textContent = "Write a valid Name";
+        valid = false;
+      }
+
+      if (!emailRegex.test(email)) {
+        document.getElementById("emailError").textContent = "Email must be like **-*****-*@student.aiub.edu";
+        valid = false;
+      }
+
+      if (!passwordRegex.test(password)) {
+        document.getElementById("passwordError").textContent = "Password must be 8+ chars with uppercase, lowercase, number, special char";
+        valid = false;
+      } else if (password !== confirmPassword) {
+        document.getElementById("passwordError").textContent = "Passwords do not match.";
+        valid = false;
+      }
+
+      if (!dob) {
+        document.getElementById("dobError").textContent = "Enter your date of birth.";
+        valid = false;
+      } else {
+        const age = new Date().getFullYear() - new Date(dob).getFullYear();
+        if (age < 18) {
+          document.getElementById("dobError").textContent = "Must be 18 years or older.";
+          valid = false;
+        }
+      }
+
+      if (!country) {
+        document.getElementById("countryError").textContent = "Select a country.";
+        valid = false;
+      }
+
+      if (!gender) {
+        document.getElementById("genderError").textContent = "Select a gender.";
+        valid = false;
+      }
+
+      if (!terms) {
+        document.getElementById("termsError").textContent = "You must agree to the terms.";
+        valid = false;
+      }
+
+      if (!valid) {
+        event.preventDefault();
+      } else {
+        localStorage.setItem("selectedColor", document.getElementById("color").value);
+      }
+    });
+
+    // Login
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const loginEmail = document.getElementById("loginEmail").value.trim();
+      const loginPassword = document.getElementById("loginPassword").value.trim();
+      const loginMessage = document.getElementById("loginMessage");
+
+      const formData = new FormData();
+      formData.append("loginEmail", loginEmail);
+      formData.append("loginPassword", loginPassword);
+
+      fetch("login.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        if (data === "success") {
+          window.location.href = "request.php";
+        } else {
+          loginMessage.textContent = "Login unsuccessful. Please check your credentials.";
+        }
+      })
+      .catch(error => {
+        loginMessage.textContent = "Server error. Please try again later.";
+      });
+    });
+  </script>
+</body>
+</html>

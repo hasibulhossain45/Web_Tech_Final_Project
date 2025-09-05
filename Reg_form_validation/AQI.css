@@ -1,0 +1,21 @@
+/* AQI.css */
+#aqiTable {
+  border-collapse: collapse;
+  width: 90%;
+  text-align: center;
+  background-color: white;
+}
+
+#aqiTable th {
+  background-color: #ddd;
+  padding: 8px;
+}
+
+#aqiTable td {
+  padding: 8px;
+  border: 1px solid #000;
+}
+
+.hidden {
+  display: none !important;
+}
